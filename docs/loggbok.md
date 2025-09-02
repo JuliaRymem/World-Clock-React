@@ -1,7 +1,10 @@
-# Loggbok – World Clock Projekt
+# Loggbok 
 
-Här dokumenterar jag arbetsprocessen. Varje rad beskriver **datum, vad jag gjort, varför, problem, lösning och nästa steg**.
+Här dokumenterar jag arbetsprocessen.
 
-| Datum | Vad gjorde jag? | Varför? | Problem | Lösning | Nästa steg |
-| ----- | --------------- | -------- | ------- | -------- | ----------- |
-|       |                 |          |         |          |             |
+| Datum      | Vad gjorde jag?                                                                                        | Varför?                                                                                                                                                | Problem | Lösning                                                                                   | Nästa steg                        |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------ | ---------------------------------- |
+| 2025-08-29 | Gjorde todo-lista i Markdown<br />Skapade user stories och AC<br />Skissade wireframes (mobil/desktop) | Behöver en tydlig planering i faser<br />Behövs för att planera arbetet och få godkännande<br />För att visualisera layouten innan implementation |         | Tog hjälp av checklistor för tydlighet<br />Påbörjade en stilguide med färg/typografi | Göra skisser för mobil & desktop |
+|            | Skapade README-mall                                                                                    | Dokumentera projektet på GitHub                                                                                                                        |         | Skrev mall med krav, struktur och TS-fördelar                                             |                                    |
+|            |                                                                                                        |                                                                                                                                                         |         |                                                                                            |                                    |
+|            |                                                                                                        |                                                                                                                                                         |         |                                                                                            |                                    |
