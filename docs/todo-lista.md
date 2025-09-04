@@ -7,27 +7,64 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 
 ---
 
-## Setup
 
-- [ ] Skapa repo på GitHub
-- [ ] (Skapa README med mål, krav och körinstruktioner)
-- [ ] Skapa ett dokument för loggbok
+## Planering
 
-## Krav / User stories
+- [X] Formulera user stories
+- [X] Göra skisser för mobil och desktop
+- [X] Skapa färg- och typografipalett (styleguide)
+- [X] Göra mappstruktur för projektet
+- [ ] Skicka Figma till Thomas för godkännande
 
-- [ ] Ta fram user stories - (formulera om kraven) (få dessa godkända av lärare!)
-- [ ] Skriv acceptanskriterier för varje story (?)
+## Projektsetup
 
-## Design
+- [X] Skapa nytt React + TypeScript-projekt med Vite
+- [X] Sätta upp mappstruktur för komponenter, hooks, typer och sidor
+- [X] Initiera Git-repo och göra första commit
 
-- [ ] Göra skisser för mobil och desktop
-- [ ] Välja färgpalett, typsnitt, layout
-- [ ] Digital och analog klocka- skiss
-- [ ] Visa detaljvy med bakgrundsbild i skisserna (?)
+## Grundfunktionalitet
 
+- [ ] Visa lista med standardstäder (json eller hårdkodad lista)
+- [ ] Visa aktuell tid (digital)
+- [ ] Göra det möjligt att lägga till städer (via modal)
+- [ ] Göra det möjligt att ta bort städer
+- [ ] Lagra användarens städer i localStorage
+- [ ] Ladda användarens städer från localStorage
 
-* [ ] Dokumentera din arbetsprocess i en loggbok eller liknande.
-* [ ] Förklara minst 3 ställen där TypeScript ger fördelar jämfört med JavaScript i din kod
-* [ ] Beskriva hur TypeScript transpileras till JavaScript i ditt projekt
+## Detaljvy (CityDetail)
 
-* Definiera tydliga interfaces för alla datatyper (t.ex. `City`, `TimeZone`, `ClockSettings`)
+- [ ] Klicka på en stad → ny route med detaljerad vy
+- [ ] Visa stadens namn, tidszon och klocka
+- [ ] Visa bakgrundsbild för staden
+- [ ] Lägga till knappar för att byta mellan digital och analog klocka
+- [ ] Knappar för att ta bort stad
+
+## UI & Styling
+
+- [ ] Responsivt grid (1 kolumn mobil, 3 kolumner desktop)
+- [ ] Header med centrerad titel + “Lägg till stad”-knapp
+- [ ] Kortdesign med skugga, rundade hörn och knappar
+- [ ] Modal för att lägga till städer
+- [ ] Detaljvy med hero-bild + ruta under
+- [ ] Ljus färgpalett och typografi
+
+## TypeScript-specifika krav
+
+- [ ] Definiera interfaces för City, ClockSettings m.fl.
+- [ ] Typa props korrekt i alla komponenter
+- [ ] Typa event handlers korrekt
+- [ ] Använda enums/string literals för tidszoner
+- [ ] Använda generics i en återanvändbar komponent
+- [ ] Implementera minst en type guard
+- [ ] Använda utility types (Partial, Pick, Omit)
+
+## Dokumentation
+
+- [X] Loggbok över arbetsprocessen
+- [ ] README.md för projektet
+- [X] Styleguide för designval
+- [ ] Kommentarer i kod på engelska
+- [ ] Förklara 3 fördelar med TypeScript i dokumentationen
+- [ ] Beskriva hur TypeScript transpileras till JavaScript
+
+## Git
