@@ -1,0 +1,1 @@
+// Hook som ger "nu" i millisekunder och uppdaterar med ett intervall (default 1s).
