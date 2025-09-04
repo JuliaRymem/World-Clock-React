@@ -1,0 +1,1 @@
+// Övergripande klock-inställningar 
