@@ -23,6 +23,13 @@ export default function CityCard({ city, now }: { city: City; now: number }) {
         <div className="meta">
           {formatDate(now, city.timeZone)} • {city.timeZone}
         </div>
+        <div className="toolbar toolbar--center">
+        <button className="btn">Byt läge</button>
+        <button className="btn btn-danger">Ta bort</button>
+      </div>
+    </div>
+  );
+}
       </div>
     );
   }
