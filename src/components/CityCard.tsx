@@ -16,10 +16,25 @@ export default function CityCard({
     onToggleView: (id: string) => void;
     onRemove: (id: string) => void;
   }) {
+    const navigate = useNavigate();
     const isAnalog = city.viewMode === "analog";
   
+    const goToDetail = () => navigate(`/city/${encodeURIComponent(city.id)}`);
+  
     return (
-      <div className="card">
+      <div
+        className="card card--column card--clickable"
+        onClick={goToDetail}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            goToDetail();
+          }
+        }}
+        aria-label={`Öppna detaljvy för ${city.name}`}
+      >
         <div className="city-name">{city.name}</div>
   
         <div className="card__clock">
@@ -37,13 +52,20 @@ export default function CityCard({
         <div className="toolbar toolbar--center">
           <button
             className="btn"
-            onClick={() => onToggleView(city.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleView(city.id);
+            }}
           >
             {isAnalog ? "Byt till digital" : "Byt till analog"}
           </button>
+  
           <button
             className="btn btn-danger"
-            onClick={() => onRemove(city.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove(city.id);
+            }}
           >
             Ta bort
           </button>
@@ -51,30 +73,5 @@ export default function CityCard({
       </div>
     );
   }
-    /** </div>
-    );
-  }
-
-<div className="city-name">{city.name}</div>
-
-
-<div className="card__clock">
-  {city.viewMode === 'analog' ? (
-    <AnalogClock epochMs={now} timeZone={city.timeZone} />
-  ) : (
-    <div className="time">{formatTime(now, city.timeZone)}</div>
-  )}
-</div>
-
-<div className="meta">
-  {formatDate(Date.now(), city.timeZone)} • {city.timeZone}
-</div>
-
-
-<div className="toolbar toolbar--center">
-  <button className="btn">Byt visning</button>
-  <button className="btn btn-danger">Ta bort</button>
-</div> 
-}
 
 export default CityCard
