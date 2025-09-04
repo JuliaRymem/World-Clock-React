@@ -1,0 +1,146 @@
+[
+    {
+      "id": "stockholm",
+      "name": "Stockholm",
+      "timeZone": "Europe/Stockholm",
+      "imageUrl": "https://images.unsplash.com/photo-1600290601473-3b73e4c531c9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "timeZone": "Europe/London",
+      "imageUrl": "https://images.unsplash.com/photo-1571019613914-85f342c13a49?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "timeZone": "Europe/Berlin",
+      "imageUrl": "https://images.unsplash.com/photo-1508051123996-69f8caf4891b?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "timeZone": "Europe/Paris",
+      "imageUrl": "https://images.unsplash.com/photo-1522098543979-ffc7f79d5c52?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "madrid",
+      "name": "Madrid",
+      "timeZone": "Europe/Madrid",
+      "imageUrl": "https://images.unsplash.com/photo-1601890177186-ced4b70945c8?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "helsinki",
+      "name": "Helsinki",
+      "timeZone": "Europe/Helsinki",
+      "imageUrl": "https://images.unsplash.com/photo-1582559192964-ff953b86adf5?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "kyiv",
+      "name": "Kyiv",
+      "timeZone": "Europe/Kyiv",
+      "imageUrl": "https://images.unsplash.com/photo-1600264007929-ad1492016ff8?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "timeZone": "Europe/Lisbon",
+      "imageUrl": "https://images.unsplash.com/photo-1501840790578-a51c7c9c4d1a?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "newyork",
+      "name": "New York",
+      "timeZone": "America/New_York",
+      "imageUrl": "https://images.unsplash.com/photo-1525556701310-4455d9c23f38?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "chicago",
+      "name": "Chicago",
+      "timeZone": "America/Chicago",
+      "imageUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "denver",
+      "name": "Denver",
+      "timeZone": "America/Denver",
+      "imageUrl": "https://images.unsplash.com/photo-1549800689-e2d9a615414c?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "losangeles",
+      "name": "Los Angeles",
+      "timeZone": "America/Los_Angeles",
+      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "timeZone": "America/Toronto",
+      "imageUrl": "https://images.unsplash.com/photo-1591289648955-b4b0ce3a4627?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "vancouver",
+      "name": "Vancouver",
+      "timeZone": "America/Vancouver",
+      "imageUrl": "https://images.unsplash.com/photo-1565372910380-7f7d831bba2c?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "mexicocity",
+      "name": "Mexico City",
+      "timeZone": "America/Mexico_City",
+      "imageUrl": "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "saopaulo",
+      "name": "São Paulo",
+      "timeZone": "America/Sao_Paulo",
+      "imageUrl": "https://images.unsplash.com/photo-1526859824129-2b4d3e6c777f?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "timeZone": "Asia/Tokyo",
+      "imageUrl": "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "seoul",
+      "name": "Seoul",
+      "timeZone": "Asia/Seoul",
+      "imageUrl": "https://images.unsplash.com/photo-1554180596-a07952b1b07e?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "timeZone": "Asia/Shanghai",
+      "imageUrl": "https://images.unsplash.com/photo-1542359730-12a1f7b48133?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "hongkong",
+      "name": "Hong Kong",
+      "timeZone": "Asia/Hong_Kong",
+      "imageUrl": "https://images.unsplash.com/photo-1541323894307-9a5fa5b7a12d?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "timeZone": "Asia/Singapore",
+      "imageUrl": "https://images.unsplash.com/photo-1526676037412-1f4a41436a0c?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "kolkata",
+      "name": "Kolkata",
+      "timeZone": "Asia/Kolkata",
+      "imageUrl": "https://images.unsplash.com/photo-1589337274013-0bdb4f1faf52?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "timeZone": "Asia/Bangkok",
+      "imageUrl": "https://images.unsplash.com/photo-1544725176-7c40e5a2c9ae?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "timeZone": "Asia/Dubai",
+      "imageUrl": "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1600&auto=format&fit=crop"
+    }
+  ]
