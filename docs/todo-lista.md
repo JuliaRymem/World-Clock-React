@@ -14,7 +14,7 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 - [X] Göra skisser för mobil och desktop
 - [X] Skapa färg- och typografipalett (styleguide)
 - [X] Göra mappstruktur för projektet
-- [ ] Skicka Figma till Thomas för godkännande
+- [X] Skicka Figma till Thomas för godkännande
 
 ## Projektsetup
 
