@@ -5,7 +5,17 @@ import type { City } from "../types/City";
 import { formatTime, formatDate } from "../utils/time";
 import { AnalogClock } from "./AnalogClock";
 
-export default function CityCard({ city, now }: { city: City; now: number }) {
+export default function CityCard({
+    city,
+    now,
+    onToggleView,
+    onRemove,
+  }: {
+    city: City;
+    now: number;
+    onToggleView: (id: string) => void;
+    onRemove: (id: string) => void;
+  }) {
     const isAnalog = city.viewMode === "analog";
   
     return (
@@ -23,20 +33,31 @@ export default function CityCard({ city, now }: { city: City; now: number }) {
         <div className="meta">
           {formatDate(now, city.timeZone)} • {city.timeZone}
         </div>
+  
         <div className="toolbar toolbar--center">
-        <button className="btn">Byt läge</button>
-        <button className="btn btn-danger">Ta bort</button>
-      </div>
-    </div>
-  );
-}
+          <button
+            className="btn"
+            onClick={() => onToggleView(city.id)}
+          >
+            {isAnalog ? "Byt till digital" : "Byt till analog"}
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => onRemove(city.id)}
+          >
+            Ta bort
+          </button>
+        </div>
       </div>
     );
   }
-{/* Stadens namn */}
+    /** </div>
+    );
+  }
+
 <div className="city-name">{city.name}</div>
 
-{/* Klocka (centrerad) */}
+
 <div className="card__clock">
   {city.viewMode === 'analog' ? (
     <AnalogClock epochMs={now} timeZone={city.timeZone} />
@@ -53,8 +74,7 @@ export default function CityCard({ city, now }: { city: City; now: number }) {
 <div className="toolbar toolbar--center">
   <button className="btn">Byt visning</button>
   <button className="btn btn-danger">Ta bort</button>
-</div>
-
-
+</div> 
+}
 
 export default CityCard
