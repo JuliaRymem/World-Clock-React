@@ -4,6 +4,7 @@ import React from "react"
 import type { City } from "../types/City"
 import { formatTime } from "../utils/time"
 import { AnalogClock } from "./AnalogClock"
+import { formatDate } from "../utils/time"
 
 export function CityCard({ city }: { city: City }) {
     return (
@@ -24,5 +25,7 @@ export function CityCard({ city }: { city: City }) {
   )}
 </div>
 
-
+<div className="meta">
+  {formatDate(Date.now(), city.timeZone)} • {city.timeZone}
+</div>
 export default CityCard
