@@ -5,19 +5,25 @@
 // Engångs-migrering: fyller i imageUrl/viewMode om det saknas i redan sparade poster
 
 
-import { useNow } from "../hooks/useNow";
-import CityCard from "../components/CityCard";
+import React, { useState } from "react";
+import Header from "../components/Header";
+import AddCityModal from "../components/AddCityModal";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import type { City } from "../types/City";
+
+const LS_KEY = "worldclock:cities";
 
 export default function Home() {
-    const now = useNow(1000);
-  
-    // tillfälligt testCity om du inte har listan igång än
-    const testCity = { id: "test", name: "Teststad", timeZone: "Europe/Stockholm", viewMode: "digital" as const };
-  
-    return (
-      <div className="container">
-        <h1>World Clock</h1>
-        <CityCard city={testCity} now={now} />
-      </div>
-    );
-  }
+  const [open, setOpen] = useState(false);
+  const [cities, setCities] = useLocalStorage<City[]>(LS_KEY, []);
+
+  const onAdd = (city: City) => setCities(prev => [...prev, city]);
+
+  return (
+    <div className="container">
+      <Header onAdd={() => setOpen(true)} />
+      {/* ...rendera cities... */}
+      <AddCityModal open={open} onClose={() => setOpen(false)} onAdd={onAdd} />
+    </div>
+  );
+}

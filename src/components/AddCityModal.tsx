@@ -2,23 +2,24 @@
 //Lägg till egen stad (namn + IANA-tidszon)
 //Använder generiska komponenten List<T> från ./List.tsx
 
-// enkel modal öppna/stäng
 import React, { useMemo, useState } from "react";
 import rawOptions from "../data/cities.json";
+import type { City } from "../types/City";
 
-type CityOption = {
-  id: string;
-  name: string;
-  timeZone: string;
-  imageUrl?: string;
-};
+type CityOption = Pick<City, "id" | "name" | "timeZone" | "imageUrl">;
+
+function uuid() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  return Math.random().toString(36).slice(2);
+}
 
 interface AddCityModalProps {
   open: boolean;
   onClose: () => void;
+  onAdd: (city: City) => void;
 }
 
-export default function AddCityModal({ open, onClose }: AddCityModalProps) {
+export default function AddCityModal({ open, onClose, onAdd }: AddCityModalProps) {
   const [query, setQuery] = useState("");
   const allOptions = useMemo<CityOption[]>(() => rawOptions as CityOption[], []);
 
@@ -32,6 +33,18 @@ export default function AddCityModal({ open, onClose }: AddCityModalProps) {
   }, [allOptions, query]);
 
   if (!open) return null;
+
+  const addFromList = (opt: CityOption) => {
+    const newCity: City = {
+      id: `${opt.id}-${uuid()}`,
+      name: opt.name,
+      timeZone: opt.timeZone,
+      imageUrl: opt.imageUrl,
+      viewMode: "digital"
+    };
+    onAdd(newCity);
+    onClose();
+  };
 
   return (
     <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
@@ -51,10 +64,10 @@ export default function AddCityModal({ open, onClose }: AddCityModalProps) {
 
         <div className="list" style={{ marginTop: 8 }}>
           {results.map(opt => (
-            <div key={opt.id} className="list-item">
+            <button key={opt.id} className="list-item" onClick={() => addFromList(opt)}>
               <div style={{ fontWeight: 600 }}>{opt.name}</div>
               <div className="meta">{opt.timeZone}</div>
-            </div>
+            </button>
           ))}
           {results.length === 0 && <div className="muted">Inga träffar</div>}
         </div>
