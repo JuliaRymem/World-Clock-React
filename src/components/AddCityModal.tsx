@@ -3,7 +3,15 @@
 //Använder generiska komponenten List<T> från ./List.tsx
 
 // enkel modal öppna/stäng
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import rawOptions from "../data/cities.json";
+
+type CityOption = {
+  id: string;
+  name: string;
+  timeZone: string;
+  imageUrl?: string;
+};
 
 interface AddCityModalProps {
   open: boolean;
@@ -12,6 +20,16 @@ interface AddCityModalProps {
 
 export default function AddCityModal({ open, onClose }: AddCityModalProps) {
   const [query, setQuery] = useState("");
+  const allOptions = useMemo<CityOption[]>(() => rawOptions as CityOption[], []);
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return allOptions.filter(opt =>
+      q.length === 0 ||
+      opt.name.toLowerCase().includes(q) ||
+      opt.timeZone.toLowerCase().includes(q)
+    );
+  }, [allOptions, query]);
 
   if (!open) return null;
 
@@ -31,7 +49,15 @@ export default function AddCityModal({ open, onClose }: AddCityModalProps) {
           style={{ marginTop: 8 }}
         />
 
-        {/* hit kommer resultat senare */}
+        <div className="list" style={{ marginTop: 8 }}>
+          {results.map(opt => (
+            <div key={opt.id} className="list-item">
+              <div style={{ fontWeight: 600 }}>{opt.name}</div>
+              <div className="meta">{opt.timeZone}</div>
+            </div>
+          ))}
+          {results.length === 0 && <div className="muted">Inga träffar</div>}
+        </div>
       </div>
     </div>
   );
