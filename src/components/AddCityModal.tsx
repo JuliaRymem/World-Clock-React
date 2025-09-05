@@ -5,8 +5,10 @@
 import React, { useMemo, useState } from "react";
 import rawOptions from "../data/cities.json";
 import type { City } from "../types/City";
+import { isValidTimeZone } from "../utils/time";
 
 type CityOption = Pick<City, "id" | "name" | "timeZone" | "imageUrl">;
+type NewCityInput = Omit<City, "id" | "viewMode" | "imageUrl">;
 
 function uuid() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
@@ -21,6 +23,10 @@ interface AddCityModalProps {
 
 export default function AddCityModal({ open, onClose, onAdd }: AddCityModalProps) {
   const [query, setQuery] = useState("");
+  const [name, setName] = useState("");
+  const [tz, setTz] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
   const allOptions = useMemo<CityOption[]>(() => rawOptions as CityOption[], []);
 
   const results = useMemo(() => {
@@ -40,6 +46,24 @@ export default function AddCityModal({ open, onClose, onAdd }: AddCityModalProps
       name: opt.name,
       timeZone: opt.timeZone,
       imageUrl: opt.imageUrl,
+      viewMode: "digital"
+    };
+    onAdd(newCity);
+    onClose();
+  };
+
+  const submitCustom: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!name.trim()) { setError("Ange ett namn"); return; }
+    if (!tz.trim())   { setError("Ange en IANA-tidszon (t.ex. Europe/Stockholm)"); return; }
+    if (!isValidTimeZone(tz)) { setError("Ogiltig IANA-tidszon"); return; }
+
+    const payload: NewCityInput = { name: name.trim(), timeZone: tz as City["timeZone"] };
+    const newCity: City = {
+      ...payload,
+      id: `${name.toLowerCase().replace(/\s+/g, "")}-${uuid()}`,
       viewMode: "digital"
     };
     onAdd(newCity);
@@ -71,6 +95,27 @@ export default function AddCityModal({ open, onClose, onAdd }: AddCityModalProps
           ))}
           {results.length === 0 && <div className="muted">Inga träffar</div>}
         </div>
+
+        <hr style={{ margin: "12px 0", opacity: 0.3 }} />
+
+        <form onSubmit={submitCustom}>
+          <div style={{ display: "grid", gap: 8 }}>
+            <input
+              className="input"
+              placeholder="Egen stad (t.ex. Edmonton)"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              className="input"
+              placeholder="IANA tidszon (t.ex. America/Edmonton)"
+              value={tz}
+              onChange={(e) => setTz(e.target.value)}
+            />
+            {error && <div style={{ color: "var(--danger)" }}>{error}</div>}
+            <button className="btn btn-primary" type="submit">Lägg till egen stad</button>
+          </div>
+        </form>
       </div>
     </div>
   );
