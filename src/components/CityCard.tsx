@@ -1,6 +1,7 @@
 // CityCard – klickbart kort som öppnar detaljvy.
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import type { City } from "../types/City";
 import { formatTime, formatDate } from "../utils/time";
 import { AnalogClock } from "./AnalogClock";
