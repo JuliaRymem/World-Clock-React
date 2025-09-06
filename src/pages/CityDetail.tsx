@@ -1,7 +1,7 @@
 // enkel sida
 //laddar city via id från localStorage
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNow } from "../hooks/useNow";
 import { formatTime, formatDate } from "../utils/time";
@@ -74,6 +74,20 @@ export default function CityDetail() {
               onClick={setAnalog}
             >
               Analog
+            </button>
+          </div>
+          {/* Ta bort-stad */}
+          <div className="detail-actions">
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                if (confirm("Ta bort stad?")) {
+                  setCities((prev) => prev.filter((c) => c.id !== city.id));
+                  navigate("/"); // navigera hemåt
+                }
+              }}
+            >
+              Ta bort
             </button>
           </div>
         </div>
