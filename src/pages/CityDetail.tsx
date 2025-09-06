@@ -3,6 +3,9 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useNow } from "../hooks/useNow";
+import { formatTime, formatDate } from "../utils/time";
+import { AnalogClock } from "../components/AnalogClock";
 import type { City } from "../types/City";
 
 const LS_KEY = "worldclock:cities";
@@ -11,7 +14,8 @@ const FALLBACK =
 
 export default function CityDetail() {
   const { id } = useParams<{ id: string }>();
-  const [cities] = useLocalStorage<City[]>(LS_KEY, []);
+  const now = useNow(1000);
+  const [cities, setCities] = useLocalStorage<City[]>(LS_KEY, []);
   const city = cities.find(c => c.id === id);
 
   if (!city) {
@@ -22,6 +26,11 @@ export default function CityDetail() {
       </div>
     );
   }
+
+  const setDigital = () =>
+    setCities(prev => prev.map(c => c.id === city.id ? { ...c, viewMode: "digital" } : c));
+  const setAnalog = () =>
+    setCities(prev => prev.map(c => c.id === city.id ? { ...c, viewMode: "analog" } : c));
 
   return (
     <div className="container">
@@ -40,7 +49,33 @@ export default function CityDetail() {
         </section>
 
         <div className="detail-card">
-          <p>Mer info kommer här…</p>
+          <div className="detail-clock">
+            {city.viewMode === "analog" ? (
+              <AnalogClock epochMs={now} timeZone={city.timeZone} size={220} />
+            ) : (
+              <div className="detail-time">{formatTime(now, city.timeZone)}</div>
+            )}
+            <div className="detail-meta">{formatDate(now, city.timeZone)}</div>
+          </div>
+
+          <div className="segmented" role="tablist" aria-label="Välj visningsläge">
+            <button
+              role="tab"
+              aria-selected={city.viewMode !== "analog"}
+              className={`segmented__btn ${city.viewMode !== "analog" ? "is-active" : ""}`}
+              onClick={setDigital}
+            >
+              Digital
+            </button>
+            <button
+              role="tab"
+              aria-selected={city.viewMode === "analog"}
+              className={`segmented__btn ${city.viewMode === "analog" ? "is-active" : ""}`}
+              onClick={setAnalog}
+            >
+              Analog
+            </button>
+          </div>
         </div>
       </div>
     </div>
