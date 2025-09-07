@@ -4,6 +4,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import type { City } from "../types/City"
 import { formatTime, formatDate } from "../utils/time"
+import { AnalogClock } from "./AnalogClock"
 
 export default function CityCard({
   city,
@@ -17,6 +18,7 @@ export default function CityCard({
   onRemove: (id: string) => void
 }) {
   const navigate = useNavigate()
+  const isAnalog = city.viewMode === "analog"
   const goToDetail = () => navigate(`/city/${encodeURIComponent(city.id)}`)
 
   return (
@@ -36,7 +38,11 @@ export default function CityCard({
       <div className="city-name">{city.name}</div>
 
       <div className="card__clock">
-        <div className="time">{formatTime(now, city.timeZone)}</div>
+        {isAnalog ? (
+          <AnalogClock epochMs={now} timeZone={city.timeZone} />
+        ) : (
+          <div className="time">{formatTime(now, city.timeZone)}</div>
+        )}
       </div>
 
       <div className="meta">
@@ -48,10 +54,10 @@ export default function CityCard({
           className="btn"
           onClick={(e) => {
             e.stopPropagation()
-            onToggleView(city.id) // funkar redan nu (även om vi inte visar analog än)
+            onToggleView(city.id)
           }}
         >
-          Byt läge
+          {isAnalog ? "Byt till digital" : "Byt till analog"}
         </button>
 
         <button
