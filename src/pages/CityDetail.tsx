@@ -1,56 +1,85 @@
 // enkel sida
 //laddar city via id från localStorage
-import React from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useNow } from "../hooks/useNow";
-import { formatTime, formatDate } from "../utils/time";
-import { AnalogClock } from "../components/AnalogClock";
-import type { City } from "../types/City";
+import React from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import type { City } from '../types/City'
+import { useNow } from '../hooks/useNow'
+import { formatDate, formatTime } from '../utils/time'
+import { AnalogClock } from '../components/AnalogClock'
 
-const LS_KEY = "worldclock:cities";
-const FALLBACK =
-  "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1600&auto=format&fit=crop";
+const LS_KEY = 'worldclock:cities'
 
 export default function CityDetail() {
-  const { id } = useParams<{ id: string }>();
-  const now = useNow(1000);
-  const [cities, setCities] = useLocalStorage<City[]>(LS_KEY, []);
-  const city = cities.find(c => c.id === id);
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const now = useNow(1000)
+
+  const [cities, setCities] = useLocalStorage<City[]>(LS_KEY, [])
+  const city = cities.find(c => c.id === id)
 
   if (!city) {
     return (
       <div className="container">
         <Link className="back-link" to="/">← Tillbaka</Link>
-        <h2>Staden hittades inte</h2>
+        <h2 style={{ textAlign: 'center' }}>Staden hittades inte</h2>
+        <p className="muted" style={{ textAlign: 'center' }}>
+          Kontrollera länken eller lägg till staden på startsidan.
+        </p>
       </div>
-    );
+    )
   }
 
   const setDigital = () =>
-    setCities(prev => prev.map(c => c.id === city.id ? { ...c, viewMode: "digital" } : c));
+    setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'digital' } : c)))
   const setAnalog = () =>
-    setCities(prev => prev.map(c => c.id === city.id ? { ...c, viewMode: "analog" } : c));
+    setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'analog' } : c)))
+  const toggle = () =>
+    setCities(prev => prev.map(c =>
+      c.id === city.id ? { ...c, viewMode: c.viewMode === 'analog' ? 'digital' : 'analog' } : c
+    ))
+  const removeCity = () => {
+    if (confirm('Ta bort stad?')) {
+      setCities(prev => prev.filter(c => c.id !== city.id))
+      navigate('/')
+    }
+  }
+
+  const baseId = city.id.split('-')[0]
 
   return (
     <div className="container">
-      <Link className="back-link" to="/">← Tillbaka</Link>
+      // centrerad länk tillbaka till startsidan
+      <Link className="back-link" to="/" style={{ display: 'block', textAlign: 'center' }}>
+        ← Tillbaka
+      </Link>
 
+      // En stor detaljvy med bild, stadens namn, klocka, datum, tidszon, knappar
       <div className="detail-section">
+        // Hero-sektionen med bakgrundsbild och stadens namn
         <section className="detail-hero">
           <div
             className="detail-bg"
-            style={{ backgroundImage: `url(${city.imageUrl || FALLBACK})` }}
+            style={{
+              backgroundImage: `url(${
+                city.imageUrl ??
+                'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1600&auto=format&fit=crop'
+              })`
+            }}
           />
           <div className="detail-content">
+            <div className="detail-meta-top">
+              Tidszon: {city.timeZone}<br />
+              Route: /city/{baseId}
+            </div>
             <div className="detail-title">{city.name}</div>
-            <div className="detail-meta-top">{city.timeZone}</div>
           </div>
         </section>
 
+        // Rutan under med klocka + knappar
         <div className="detail-card">
           <div className="detail-clock">
-            {city.viewMode === "analog" ? (
+            {city.viewMode === 'analog' ? (
               <AnalogClock epochMs={now} timeZone={city.timeZone} size={220} />
             ) : (
               <div className="detail-time">{formatTime(now, city.timeZone)}</div>
@@ -58,40 +87,32 @@ export default function CityDetail() {
             <div className="detail-meta">{formatDate(now, city.timeZone)}</div>
           </div>
 
+          // Segmenterad kontroll för visningsläge
           <div className="segmented" role="tablist" aria-label="Välj visningsläge">
             <button
               role="tab"
-              aria-selected={city.viewMode !== "analog"}
-              className={`segmented__btn ${city.viewMode !== "analog" ? "is-active" : ""}`}
+              aria-selected={city.viewMode !== 'analog'}
+              className={`segmented__btn ${city.viewMode !== 'analog' ? 'is-active' : ''}`}
               onClick={setDigital}
             >
               Digital
             </button>
             <button
               role="tab"
-              aria-selected={city.viewMode === "analog"}
-              className={`segmented__btn ${city.viewMode === "analog" ? "is-active" : ""}`}
+              aria-selected={city.viewMode === 'analog'}
+              className={`segmented__btn ${city.viewMode === 'analog' ? 'is-active' : ''}`}
               onClick={setAnalog}
             >
               Analog
             </button>
           </div>
-          {/* Ta bort-stad */}
+
+          // Knappar för att växla visningsläge och ta bort stad
           <div className="detail-actions">
-            <button
-              className="btn btn-danger"
-              onClick={() => {
-                if (confirm("Ta bort stad?")) {
-                  setCities((prev) => prev.filter((c) => c.id !== city.id));
-                  navigate("/"); // navigera hemåt
-                }
-              }}
-            >
-              Ta bort
-            </button>
+            <button className="btn btn-danger" onClick={removeCity}>Ta bort</button>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
