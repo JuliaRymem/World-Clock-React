@@ -22,8 +22,7 @@ interface AddCityModalProps {
   open: boolean
   onClose: () => void
   onAdd: (city: City) => void
- // Set med redan använda bas-id:n (för att undvika dubbletter vid sökning)
-  existingIds: Set<string>
+  existingIds?: Set<string>
 }
 
 export const AddCityModal: React.FC<AddCityModalProps> = ({
