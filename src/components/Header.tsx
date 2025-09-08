@@ -1,8 +1,11 @@
 // Header rubrik + knapp
+import React from 'react'
 
-import React from "react";
+interface HeaderProps {
+  onAdd: () => void
+}
 
-export default function Header({ onAdd }: { onAdd: () => void }) {
+export function Header({ onAdd }: HeaderProps) {
   return (
     <header className="header header--center">
       <h1 className="title title--xl">World Clock</h1>
@@ -10,5 +13,7 @@ export default function Header({ onAdd }: { onAdd: () => void }) {
         + Lägg till stad
       </button>
     </header>
-  );
+  )
 }
+
+export default Header
