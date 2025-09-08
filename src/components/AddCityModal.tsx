@@ -2,17 +2,16 @@
 //Lägg till egen stad (namn + IANA-tidszon)
 //Använder generiska komponenten List<T> från ./List.tsx
 
-
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { City } from '../types/City'
 import { isValidTimeZone } from '../utils/time'
 import rawOptions from '../data/cities.json'
-import { List } from './List' // ✅ Viktigt: rätt relativ sökväg (samma mapp)
+import { List } from './List' 
 
 type CityOption = Pick<City, 'id' | 'name' | 'timeZone' | 'imageUrl'>
 type NewCityInput = Omit<City, 'id' | 'viewMode' | 'imageUrl'>
 
-// Enkelt UUID (om crypto.randomUUID saknas)
+// enkel uuid så varje tillagd instans blir unik
 function uuid() {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
   return Math.random().toString(36).slice(2)
@@ -22,7 +21,8 @@ interface AddCityModalProps {
   open: boolean
   onClose: () => void
   onAdd: (city: City) => void
-  existingIds?: Set<string>
+  /** Bas-id (utan suffix) som redan finns – används för att dölja dubbletter i listan */
+  existingIds: Set<string>
 }
 
 export const AddCityModal: React.FC<AddCityModalProps> = ({
@@ -51,7 +51,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  // JSON → CityOption[]
+  // JSON är av rätt typ 
   const allOptions = useMemo<CityOption[]>(() => rawOptions as CityOption[], [])
 
   // Filtrera träffar: göm redan tillagda (via bas-id) + matcha söksträng
@@ -69,7 +69,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
 
   if (!open) return null
 
- // Lägg till vald stad från listan
+  // Lägg till vald stad från listan 
   const addFromList = (opt: CityOption) => {
     const newCity: City = {
       id: `${opt.id}-${uuid()}`, // gör unik
@@ -114,14 +114,14 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
       aria-modal="true"
       aria-labelledby="add-city-title"
     >
-      // Modalinnehåll – klick stoppas från att bubbla upp
+      {/* stopPropagation så klick inne i modalen inte stänger den */}
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
           <h3 id="add-city-title" style={{ margin: 0 }}>Lägg till stad</h3>
           <button className="btn" onClick={onClose} aria-label="Stäng">Stäng</button>
         </div>
 
-        // Sökfält för att filtrera resultat
+        {/* Sökfält */}
         <input
           ref={inputRef}
           className="input"
@@ -132,7 +132,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
           spellCheck={false}
         />
 
-        // Resultatlista från JSON
+        {/* Resultatlista – använder generiska List<T> */}
         <List<CityOption>
           className="list"
           items={results}
@@ -149,14 +149,14 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
           )}
         />
 
-       // Meddelande om inga träffar i listan
+        // Inga träffar fallback
         {results.length === 0 && (
           <div className="muted" style={{ padding: 8 }}>Inga träffar</div>
         )}
 
         <hr style={{ margin: '12px 0', opacity: 0.3 }} />
 
-        // Formulär för att lägga till egen stad med IANA-tidszon
+        // Formulär för egen stad 
         <form onSubmit={submitCustom}>
           <div style={{ display: 'grid', gap: 8 }}>
             <input
