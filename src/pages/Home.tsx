@@ -60,7 +60,7 @@ export default function Home() {
         setCities(withInitialDefaults(DEFAULT_CITIES))
       }
     }
-  }, [])
+  }, [setCities])
 
   // migrera gamla poster som saknar imageUrl eller viewMode
   const didMigrate = useRef(false)
