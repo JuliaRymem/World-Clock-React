@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { City } from '../types/City'
 import { isValidTimeZone } from '../utils/time'
 import rawOptions from '../data/cities.json'
-import { List } from './List' 
+import { List } from './List'
 
 type CityOption = Pick<City, 'id' | 'name' | 'timeZone' | 'imageUrl'>
 type NewCityInput = Omit<City, 'id' | 'viewMode' | 'imageUrl'>
