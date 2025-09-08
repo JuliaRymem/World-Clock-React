@@ -1,6 +1,4 @@
 // Header rubrik + knapp
-import React from 'react'
-
 interface HeaderProps {
   onAdd: () => void
 }

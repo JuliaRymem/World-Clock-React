@@ -2,7 +2,7 @@
 // epochMs: tiden i millisekunder
 // timeZone: vilken tidszon tiden räknas om till
 
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import type { TimeZone } from '../types/TimeZone'
 
 // räkna ut visarnas vinklar

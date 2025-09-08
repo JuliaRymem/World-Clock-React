@@ -1,6 +1,6 @@
 // enkel sida
 //laddar city via id från localStorage
-import React from 'react'
+
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import type { City } from '../types/City'
