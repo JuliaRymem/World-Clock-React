@@ -9,138 +9,138 @@
       "id": "london",
       "name": "London",
       "timeZone": "Europe/London",
-      "imageUrl": "https://images.unsplash.com/photo-1571019613914-85f342c13a49?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "berlin",
       "name": "Berlin",
       "timeZone": "Europe/Berlin",
-      "imageUrl": "https://images.unsplash.com/photo-1508051123996-69f8caf4891b?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "paris",
       "name": "Paris",
       "timeZone": "Europe/Paris",
-      "imageUrl": "https://images.unsplash.com/photo-1522098543979-ffc7f79d5c52?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "madrid",
       "name": "Madrid",
       "timeZone": "Europe/Madrid",
-      "imageUrl": "https://images.unsplash.com/photo-1601890177186-ced4b70945c8?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "helsinki",
-      "name": "Helsinki",
+      "name": "Helsingfors",
       "timeZone": "Europe/Helsinki",
-      "imageUrl": "https://images.unsplash.com/photo-1582559192964-ff953b86adf5?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1683119167031-19bf5bd185de?q=80&w=1839&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "kyiv",
-      "name": "Kyiv",
+      "name": "Kiev",
       "timeZone": "Europe/Kyiv",
-      "imageUrl": "https://images.unsplash.com/photo-1600264007929-ad1492016ff8?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1649453172896-e6ce31f0358d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "lisbon",
-      "name": "Lisbon",
+      "name": "Lissabon",
       "timeZone": "Europe/Lisbon",
-      "imageUrl": "https://images.unsplash.com/photo-1501840790578-a51c7c9c4d1a?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1562250883-39d8b01616c8?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "newyork",
       "name": "New York",
       "timeZone": "America/New_York",
-      "imageUrl": "https://images.unsplash.com/photo-1525556701310-4455d9c23f38?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "chicago",
       "name": "Chicago",
       "timeZone": "America/Chicago",
-      "imageUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1844&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "denver",
       "name": "Denver",
       "timeZone": "America/Denver",
-      "imageUrl": "https://images.unsplash.com/photo-1549800689-e2d9a615414c?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1602800458591-eddda28a498b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "losangeles",
       "name": "Los Angeles",
       "timeZone": "America/Los_Angeles",
-      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1563503136947-cc262fa1e423?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "toronto",
       "name": "Toronto",
       "timeZone": "America/Toronto",
-      "imageUrl": "https://images.unsplash.com/photo-1591289648955-b4b0ce3a4627?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "vancouver",
       "name": "Vancouver",
       "timeZone": "America/Vancouver",
-      "imageUrl": "https://images.unsplash.com/photo-1565372910380-7f7d831bba2c?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "mexicocity",
       "name": "Mexico City",
       "timeZone": "America/Mexico_City",
-      "imageUrl": "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "saopaulo",
       "name": "São Paulo",
       "timeZone": "America/Sao_Paulo",
-      "imageUrl": "https://images.unsplash.com/photo-1526859824129-2b4d3e6c777f?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "tokyo",
       "name": "Tokyo",
       "timeZone": "Asia/Tokyo",
-      "imageUrl": "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "seoul",
       "name": "Seoul",
       "timeZone": "Asia/Seoul",
-      "imageUrl": "https://images.unsplash.com/photo-1554180596-a07952b1b07e?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?q=80&w=2531&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "shanghai",
       "name": "Shanghai",
       "timeZone": "Asia/Shanghai",
-      "imageUrl": "https://images.unsplash.com/photo-1542359730-12a1f7b48133?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "hongkong",
       "name": "Hong Kong",
       "timeZone": "Asia/Hong_Kong",
-      "imageUrl": "https://images.unsplash.com/photo-1541323894307-9a5fa5b7a12d?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1554208786-6776fa9e7df4?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "singapore",
       "name": "Singapore",
       "timeZone": "Asia/Singapore",
-      "imageUrl": "https://images.unsplash.com/photo-1526676037412-1f4a41436a0c?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1504&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "kolkata",
       "name": "Kolkata",
       "timeZone": "Asia/Kolkata",
-      "imageUrl": "https://images.unsplash.com/photo-1589337274013-0bdb4f1faf52?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1626198226928-617fc6c6203e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "bangkok",
       "name": "Bangkok",
       "timeZone": "Asia/Bangkok",
-      "imageUrl": "https://images.unsplash.com/photo-1544725176-7c40e5a2c9ae?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": "dubai",
       "name": "Dubai",
       "timeZone": "Asia/Dubai",
-      "imageUrl": "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1600&auto=format&fit=crop"
+      "imageUrl": "https://images.unsplash.com/photo-1546412414-8035e1776c9a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ]
