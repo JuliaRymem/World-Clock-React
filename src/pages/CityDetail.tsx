@@ -34,6 +34,11 @@ export default function CityDetail() {
     setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'digital' } : c)))
   const setAnalog = () =>
     setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'analog' } : c)))
+  const toggle = () =>
+    setCities(prev => prev.map(c =>
+      c.id === city.id ? { ...c, viewMode: c.viewMode === 'analog' ? 'digital' : 'analog' } : c
+    ))
+
   const removeCity = () => {
     if (confirm('Ta bort stad?')) {
       setCities(prev => prev.filter(c => c.id !== city.id))
@@ -45,15 +50,23 @@ export default function CityDetail() {
 
   return (
     <div className="container">
-      {/* centrerad länk tillbaka till startsidan */}
+      {/* Länk tillbaka */}
       <Link className="back-link" to="/" style={{ display: 'block', textAlign: 'center' }}>
         ← Tillbaka
       </Link>
 
-      {/* En stor detaljvy med bild, stadens namn, klocka, datum, tidszon, knappar */}
+      {/* En sektion med titel över bild + “kort” under */}
       <div className="detail-section">
-        {/* Hero-sektionen med bakgrundsbild och stadens namn */}
-        <section className="detail-hero">
+        {/* NY: Titel/meta över bilden */}
+        <header className="detail-header">
+          <h2 className="detail-title detail-title--top">{city.name}</h2>
+          <div className="detail-meta-top">
+            Tidszon: {city.timeZone} • Route: /city/{baseId}
+          </div>
+        </header>
+
+        {/* Bilden (hero) utan titel överlagrad */}
+        <section className="detail-hero" aria-label={`Bild på ${city.name}`}>
           <div
             className="detail-bg"
             style={{
@@ -63,16 +76,9 @@ export default function CityDetail() {
               })`
             }}
           />
-          <div className="detail-content">
-            <div className="detail-meta-top">
-              Tidszon: {city.timeZone}<br />
-              Route: /city/{baseId}
-            </div>
-            <div className="detail-title">{city.name}</div>
-          </div>
         </section>
 
-        {/* Rutan under med klocka + knappar */}
+        {/* Rutan under bilden */}
         <div className="detail-card">
           <div className="detail-clock">
             {city.viewMode === 'analog' ? (
@@ -83,7 +89,7 @@ export default function CityDetail() {
             <div className="detail-meta">{formatDate(now, city.timeZone)}</div>
           </div>
 
-          {/* Segmenterad kontroll för visningsläge */}
+          {/* Toggle digital/analog */}
           <div className="segmented" role="tablist" aria-label="Välj visningsläge">
             <button
               role="tab"
@@ -103,7 +109,7 @@ export default function CityDetail() {
             </button>
           </div>
 
-          {/* Knappar */}
+          {/* Åtgärder */}
           <div className="detail-actions">
             <button className="btn btn-danger" onClick={removeCity}>Ta bort</button>
           </div>
