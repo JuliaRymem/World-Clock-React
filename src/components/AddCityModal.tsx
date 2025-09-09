@@ -149,14 +149,14 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
           )}
         />
 
-        // Inga träffar fallback
+        {/*Inga träffar*/}
         {results.length === 0 && (
           <div className="muted" style={{ padding: 8 }}>Inga träffar</div>
         )}
 
         <hr style={{ margin: '12px 0', opacity: 0.3 }} />
 
-        // Formulär för egen stad 
+        {/* Formulär för egen stad */}
         <form onSubmit={submitCustom}>
           <div style={{ display: 'grid', gap: 8 }}>
             <input
