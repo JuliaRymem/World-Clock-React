@@ -7,7 +7,6 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 
 ---
 
-
 ## Planering
 
 - [X] Formulera user stories
@@ -24,47 +23,50 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 
 ## Grundfunktionalitet
 
-- [ ] Visa lista med standardstäder (json eller hårdkodad lista)
-- [ ] Visa aktuell tid (digital)
-- [ ] Göra det möjligt att lägga till städer (via modal)
-- [ ] Göra det möjligt att ta bort städer
-- [ ] Lagra användarens städer i localStorage
-- [ ] Ladda användarens städer från localStorage
+- [X] Visa lista med standardstäder (från cities.json)
+- [X] Visa aktuell tid (digital)
+- [X] Göra det möjligt att lägga till städer (via modal)
+- [X] Göra det möjligt att ta bort städer
+- [X] Lagra användarens städer i localStorage
+- [X] Ladda användarens städer från localStorage
 
 ## Detaljvy (CityDetail)
 
-- [ ] Klicka på en stad → ny route med detaljerad vy
-- [ ] Visa stadens namn, tidszon och klocka
-- [ ] Visa bakgrundsbild för staden
-- [ ] Lägga till knappar för att byta mellan digital och analog klocka
-- [ ] Knappar för att ta bort stad
+- [X] Klicka på en stad → ny route med detaljerad vy
+- [X] Visa stadens namn, tidszon och klocka
+- [X] Visa bakgrundsbild för staden
+- [X] Lägga till knappar för att byta mellan digital och analog klocka
+- [X] Knappar för att ta bort stad
 
 ## UI & Styling
 
-- [ ] Responsivt grid (1 kolumn mobil, 3 kolumner desktop)
-- [ ] Header med centrerad titel + “Lägg till stad”-knapp
-- [ ] Kortdesign med skugga, rundade hörn och knappar
-- [ ] Modal för att lägga till städer
-- [ ] Detaljvy med hero-bild + ruta under
-- [ ] Ljus färgpalett och typografi
+- [X] Responsivt grid (1 kolumn mobil, 3 kolumner desktop)
+- [X] Header med centrerad titel + “Lägg till stad”-knapp
+- [X] Kortdesign med skugga, rundade hörn och knappar
+- [X] Modal för att lägga till städer
+- [X] Detaljvy med hero-bild + ruta under
+- [X] Ljus färgpalett och typografi
+- [ ] (om tid finns - bättre styling!)
 
 ## TypeScript-specifika krav
 
-- [ ] Definiera interfaces för City, ClockSettings m.fl.
-- [ ] Typa props korrekt i alla komponenter
-- [ ] Typa event handlers korrekt
-- [ ] Använda enums/string literals för tidszoner
-- [ ] Använda generics i en återanvändbar komponent
-- [ ] Implementera minst en type guard
-- [ ] Använda utility types (Partial, Pick, Omit)
+- [X] Definiera interfaces för City, ClockSettings m.fl.
+- [X] Typa props korrekt i alla komponenter
+- [X] Typa event handlers korrekt
+- [X] Använda enums/string literals för tidszoner
+- [X] Använda generics i en återanvändbar komponent (List `<T>`)
+- [X] Implementera minst en type guard (isCity)
+- [X] Använda utility types (Omit i AddCityModal)
 
 ## Dokumentation
 
 - [X] Loggbok över arbetsprocessen
-- [ ] README.md för projektet
+- [X] README.md för projektet
 - [X] Styleguide för designval
 - [ ] Kommentarer i kod på engelska
-- [ ] Förklara 3 fördelar med TypeScript i dokumentationen
-- [ ] Beskriva hur TypeScript transpileras till JavaScript
+- [X] Förklara 3 fördelar med TypeScript i dokumentationen
+- [X] Beskriva hur TypeScript transpileras till JavaScript
 
 ## Git
+
+- [X] Frekventa commits med tydliga meddelanden
