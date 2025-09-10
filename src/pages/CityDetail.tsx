@@ -34,10 +34,6 @@ export default function CityDetail() {
     setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'digital' } : c)))
   const setAnalog = () =>
     setCities(prev => prev.map(c => (c.id === city.id ? { ...c, viewMode: 'analog' } : c)))
-  const toggle = () =>
-    setCities(prev => prev.map(c =>
-      c.id === city.id ? { ...c, viewMode: c.viewMode === 'analog' ? 'digital' : 'analog' } : c
-    ))
 
   const removeCity = () => {
     if (confirm('Ta bort stad?')) {
