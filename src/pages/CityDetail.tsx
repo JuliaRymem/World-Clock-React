@@ -29,7 +29,7 @@ export default function CityDetail() {
   if (!city) {
     return (
       <div className="container">
-        <Link className="back-link" to="/">← Back</Link>
+        <Link className="back-link" to="/">← Back to start</Link>
         <h2 style={{ textAlign: 'center' }}>City not found</h2>
         <p className="muted" style={{ textAlign: 'center' }}>
           Check the link or add the city again from the homepage.
@@ -59,7 +59,7 @@ export default function CityDetail() {
     <div className="container">
       {/* Back link to homepage */}
       <Link className="back-link" to="/" style={{ display: 'block', textAlign: 'center' }}>
-        ← Back
+        ← Tillbaka
       </Link>
 
       <div className="detail-section">
