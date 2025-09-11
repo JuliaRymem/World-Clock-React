@@ -109,24 +109,37 @@ a:hover { text-decoration: underline; }
 @media (min-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* =====================================================
-   Cards (City – Home) — Compact & Centered
-===================================================== */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 48px;      
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 64px;        
+  }
+}
+
+/* Cards - City Home */
 .card {
   position: relative;
-  background: #FFFFFF;
-  border-radius: 18px;
+  background: #ffffffd9;   
+  border-radius: 20px;
   border: 1px solid #E5E7EB;
 
-  display: grid;
-  grid-template-rows: auto 1fr auto;  /* header / body / footer */
-  row-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-  min-height: 200px;                  /* mindre kort än tidigare */
-  max-width: 320px;                   /* bredd så de inte blir för stora */
+  min-height: 240px;      
+  max-width: 300px;
   margin: 0 auto;
 
-  padding: 12px;
+  padding: 16px 14px;
   transition: transform 0.2s ease, box-shadow 0.25s ease;
   box-shadow: 0 8px 18px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.04);
   overflow: hidden;
@@ -137,77 +150,100 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 14px 28px rgba(0,0,0,0.14), 0 6px 12px rgba(0,0,0,0.06);
 }
 
-/* Pastellram runt kortet */
+/* Pastel rainbow frame */
 .card::before {
   content: "";
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  padding: 6px; /* tunnare ram för mindre kort */
+  padding: 6px;
   background: conic-gradient(#BFA5D4, #F6B0C7, #F7E8C8, #CDE7F6, #839F7E, #BFA5D4);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-/* ---------- Header ---------- */
+/* Card - header */
 .city-name {
   font-family: "Manrope", Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: 0.2px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
   text-align: center;
   color: #1F2937;
   margin: 0;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed #E5E7EB;
+  margin-bottom: 12px;
+  position: relative;       /* behövs för ::after */
+  padding-bottom: 10px;     /* utrymme för linjen */
+  width: 100%;              /* gör så linjen kan bli hela kortets bredd */
 }
 
-/* ---------- Body ---------- */
+.city-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;  
+  background: #bfa5d481;
+  border-radius: 2px;
+}
+
+/* Card - body */
 .card__clock {
   width: 100%;
-  min-height: 100px;    /* mindre höjd */
+  min-height: 120px;
   display: grid;
   place-items: center;
-  margin-top: 4px;
+  margin: 4px 0;
 }
 .time {
   font-variant-numeric: tabular-nums;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  color: #1F2937;
+  color: #1f2937c9;
   line-height: 1.1;
 }
 .meta {
-  font-size: 11px;
+  font-size: 12px;
   color: #6B7280;
   text-align: center;
   margin-top: 4px;
+  margin-bottom: 10px;
 }
 
-/* ---------- Footer (toolbar) ---------- */
-.toolbar {
+/* Card- "footer" with actions */
+.card-actions {
   width: 100%;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  padding-top: 8px;
-  margin-top: 4px;
-  border-top: 1px dashed #E5E7EB;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  margin-top: 8px;
 }
-.card .btn {
-  flex: 1 1 auto;
-  min-width: 80px;       /* smalare knappar */
-  padding: 8px 10px;
-  font-size: 13px;
-  border-radius: 8px;
+
+/* Toggle in card */
+.card .segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 4px;
   background: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.card .segmented__btn {
+  border: 0;
+  background: transparent;
   color: #1F2937;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background .15s ease;
 }
 .card .btn:hover {
   transform: translateY(-1px);
