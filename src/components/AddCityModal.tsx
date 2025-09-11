@@ -176,7 +176,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
               spellCheck={false}
             />
             {error && <div style={{ color: 'var(--danger)' }} aria-live="polite">{error}</div>}
-            <button className="btn btn-primary" type="submit">Lägg till egen stad</button>
+            <button className="btn btn-primary" type="submit">Lägg till en egen stad</button>
           </div>
         </form>
       </div>
