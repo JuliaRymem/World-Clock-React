@@ -145,7 +145,7 @@ export default function Home() {
       {/* Either show an empty state or the grid of cards */}
       {cities.length === 0 ? (
         <div className="empty">
-          Hoppsan! Här fanns det inga klockor än. Börja med att lägga till en stad.
+          Hoppsan! Här fanns det inga klockor än. Börja med att lägga till en stad!
           <div style={{ marginTop: 8 }}>
             <button className="btn btn-primary" onClick={() => setModalOpen(true)}>
               + Lägg till en stad
