@@ -157,9 +157,15 @@ a:hover { text-decoration: underline; }
   border-radius: inherit;
   padding: 6px;
   background: conic-gradient(#BFA5D4, #F6B0C7, #F7E8C8, #CDE7F6, #839F7E, #BFA5D4);
+
+  /* Standard property */
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  /* WebKit fallback */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+
   pointer-events: none;
   opacity: 0.85;
 }
