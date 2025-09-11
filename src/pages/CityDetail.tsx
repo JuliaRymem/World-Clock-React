@@ -118,7 +118,7 @@ export default function CityDetail() {
 
           {/* Remove button */}
           <div className="detail-actions">
-            <button className="btn btn-danger" onClick={removeCity}>Remove</button>
+            <button className="btn btn-danger" onClick={removeCity}>Ta bort</button>
           </div>
         </div>
       </div>
