@@ -1,6 +1,8 @@
-// Sök och välj stad från JSON (cities.json)
-//Lägg till egen stad (namn + IANA-tidszon)
-//Använder generiska komponenten List<T> från ./List.tsx
+/**
+ * - Search and pick a city from cities.json
+ * - Add a custom city (name + IANA time zone)
+ * - Uses the generic <List<T>> component for rendering results
+ */
 
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { City } from '../types/City'
@@ -11,17 +13,24 @@ import { List } from './List'
 type CityOption = Pick<City, 'id' | 'name' | 'timeZone' | 'imageUrl'>
 type NewCityInput = Omit<City, 'id' | 'viewMode' | 'imageUrl'>
 
-// enkel uuid så varje tillagd instans blir unik
+/** Minimal UUID helper so each added instance becomes unique */
 function uuid() {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
   return Math.random().toString(36).slice(2)
 }
 
+/** Props for AddCityModal */
 interface AddCityModalProps {
+  /** When the modal is visible */
   open: boolean
+  /** Called when the modal should close */
   onClose: () => void
+  /** Called with the City to add */
   onAdd: (city: City) => void
-  /** Bas-id (utan suffix) som redan finns – används för att dölja dubbletter i listan */
+  /**
+   * Set of already-added base IDs (without the unique suffix).
+   * Used to hide duplicates from the selection list.
+   */
   existingIds: Set<string>
 }
 
@@ -31,19 +40,19 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
   onAdd,
   existingIds,
 }) => {
-  const [query, setQuery] = useState<string>('') // sök i listan
-  const [name, setName] = useState<string>('')   // egen stad
-  const [tz, setTz] = useState<string>('')       // egen IANA-tidszon
+  const [query, setQuery] = useState<string>('') // search text
+  const [name, setName] = useState<string>('')   // custom city name
+  const [tz, setTz] = useState<string>('')       // custom IANA time zone
   const [error, setError] = useState<string | null>(null)
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  // Autofokus när modalen öppnas
+  // Autofocus the search input when the modal opens
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 0)
   }, [open])
 
-  // Stäng på Escape
+  // Close on Escape
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -51,10 +60,10 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  // JSON är av rätt typ 
+  // Strongly type JSON as CityOption[]
   const allOptions = useMemo<CityOption[]>(() => rawOptions as CityOption[], [])
 
-  // Filtrera träffar: göm redan tillagda (via bas-id) + matcha söksträng
+  // Filter: hide already-added (by base id) + match search text
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
     return allOptions
@@ -69,20 +78,20 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
 
   if (!open) return null
 
-  // Lägg till vald stad från listan 
+  /** Add a city chosen from the predefined list */
   const addFromList = (opt: CityOption) => {
     const newCity: City = {
-      id: `${opt.id}-${uuid()}`, // gör unik
+      id: `${opt.id}-${uuid()}`, // make unique
       name: opt.name,
       timeZone: opt.timeZone,
-      imageUrl: opt.imageUrl,    // följer med om finns i JSON
-      // viewMode sätts i Home.tsx (default 'digital')
+      imageUrl: opt.imageUrl,    // carry over image if present in JSON
+      // viewMode is set in Home.tsx (default 'digital')
     }
     onAdd(newCity)
     onClose()
   }
 
-  // Lägg till egen stad
+  /** Submit a custom city with IANA zone (validated) */
   const submitCustom: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     setError(null)
@@ -99,7 +108,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
     const newCity: City = {
       ...payload,
       id: `${name.toLowerCase().replace(/\s+/g, '')}-${uuid()}`,
-      // imageUrl lämnas tom för egen stad – kan kompletteras senare
+      // imageUrl intentionally left undefined for custom cities
     }
 
     onAdd(newCity)
@@ -114,14 +123,14 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
       aria-modal="true"
       aria-labelledby="add-city-title"
     >
-      {/* stopPropagation så klick inne i modalen inte stänger den */}
+      {/* Prevent clicks inside the modal from closing it */}
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
           <h3 id="add-city-title" style={{ margin: 0 }}>Lägg till stad</h3>
           <button className="btn" onClick={onClose} aria-label="Stäng">Stäng</button>
         </div>
 
-        {/* Sökfält */}
+        {/* Search input */}
         <input
           ref={inputRef}
           className="input"
@@ -132,7 +141,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
           spellCheck={false}
         />
 
-        {/* Resultatlista – använder generiska List<T> */}
+        {/* Results list – rendered via generic List<T> */}
         <List<CityOption>
           className="list"
           items={results}
@@ -149,14 +158,14 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
           )}
         />
 
-        {/*Inga träffar*/}
+        {/* Empty state */}
         {results.length === 0 && (
           <div className="muted" style={{ padding: 8 }}>Inga träffar</div>
         )}
 
         <hr style={{ margin: '12px 0', opacity: 0.3 }} />
 
-        {/* Formulär för egen stad */}
+        {/* Custom city form */}
         <form onSubmit={submitCustom}>
           <div style={{ display: 'grid', gap: 8 }}>
             <input

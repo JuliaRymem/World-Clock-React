@@ -1,4 +1,4 @@
-// återanvändbar lista komponent i React med TypeScript
+// react functional component that takes a list of items and renders them using a provided render function.
 
 import React from 'react'
 

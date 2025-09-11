@@ -1,4 +1,4 @@
-// CityCard – klickbart kort som öppnar detaljvy.
+// CityCard - a single "card" that shows a city and its clock
 
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -6,19 +6,17 @@ import type { City } from '../types/City'
 import { formatDate, formatTime, diffFromLocalMinutes } from '../utils/time'
 import { AnalogClock } from './AnalogClock'
 
-export function CityCard({
-  city,
-  now,
-  onRemove,
-  onToggleView
-}: {
+type CityCardProps = {
   city: City
-  now: number
-  onRemove: (id: string) => void
-  onToggleView: (id: string) => void
-}) {
+  now: number               // current time in milliseconds
+  onRemove: (id: string) => void   // remove this city
+  onToggleView: (id: string) => void // switch between analog/digital
+}
+
+export function CityCard({ city, now, onRemove, onToggleView }: CityCardProps) {
   const navigate = useNavigate()
 
+  // Calculate how many hours and minutes this city is ahead/behind local time
   const minutesDiff = diffFromLocalMinutes(city.timeZone, now)
   const sign = minutesDiff === 0 ? '±' : minutesDiff > 0 ? '+' : '−'
   const absMin = Math.abs(minutesDiff)
@@ -26,9 +24,11 @@ export function CityCard({
   const m = absMin % 60
   const diffLabel = `${sign}${h}h${String(m).padStart(2, '0')}`
 
+  // Function to go to the "detail page" for this city
   const goToDetail = () => navigate(`/city/${encodeURIComponent(city.id)}`)
 
-  // Hjälpare: stoppa att klicket bubblar upp till kortet
+  // Stop click bubbling so that when you click a button,
+  // it doesn’t also open the detail page
   const stop: React.MouseEventHandler = (e) => e.stopPropagation()
 
   return (
@@ -43,12 +43,14 @@ export function CityCard({
           goToDetail()
         }
       }}
-      aria-label={`Öppna detaljvy för ${city.name}`}
+      aria-label={`Open detail view for ${city.name}`}
     >
-      {/* Stadens namn */}
-      <div className="city-name">{city.name}</div>
+      {/* City name */}
+      <div className="city-name" style={{ textAlign: 'center' }}>
+        {city.name}
+      </div>
 
-      {/* Klocka (centrerad) */}
+      {/* Clock - either analog or digital */}
       <div className="card__clock">
         {city.viewMode === 'analog' ? (
           <AnalogClock epochMs={now} timeZone={city.timeZone} />
@@ -57,20 +59,33 @@ export function CityCard({
         )}
       </div>
 
-      {/* Info-rad */}
+      {/* Extra info withdate, time zone, difference */}
       <div className="meta">
         {formatDate(now, city.timeZone)} • {city.timeZone} • diff {diffLabel}
       </div>
 
-      {/* Knappar för stoppa propagation så kortet inte klickas */}
-      <div className="toolbar toolbar--center">
-        <button className="btn" onClick={(e) => { stop(e); onToggleView(city.id) }}>
-          {city.viewMode === 'analog' ? 'Byt till digital' : 'Byt till analog'}
-        </button>
-        <button className="btn btn-danger" onClick={(e) => { stop(e); onRemove(city.id) }}>
-          Ta bort
-        </button>
-      </div>
+      {/* Buttons */}
+<div className="toolbar toolbar--center">
+  <button
+    className="btn"
+    onClick={(e) => {
+      stop(e)
+      onToggleView(city.id)
+    }}
+  >
+    {city.viewMode === 'analog' ? 'Byt till digital' : 'Byt till analog'}
+  </button>
+
+  <button
+    className="btn btn-danger"
+    onClick={(e) => {
+      stop(e)
+      onRemove(city.id)
+    }}
+  >
+    Ta bort
+  </button>
+</div>
     </div>
   )
 }

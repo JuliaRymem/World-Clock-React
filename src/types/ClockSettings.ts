@@ -1,5 +1,5 @@
-// Övergripande klock-inställningar 
-// bara defaultView
+// clock settings
+// only defaultView
 
 import type { ViewMode } from './City'
 

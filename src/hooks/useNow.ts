@@ -1,4 +1,4 @@
-// Hook som ger "nu" i millisekunder och uppdaterar med ett intervall (default 1s).
+// Hook that returns the current timestamp and updates it every tickMs milliseconds
 
 import { useEffect, useState } from 'react'
 

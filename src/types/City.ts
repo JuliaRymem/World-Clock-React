@@ -1,9 +1,9 @@
-// City beskriver en stad och dess tidszon
-//- id: unikt id för att kunna länka till detaljvy
-// - name: visningsnamn
-// - timeZone: IANA-tidszon ('Europe/Stockholm')
-// - imageUrl: valfri bakgrundsbild till detaljvyn
-// - viewMode: 'digital' eller 'analog'
+// City describes a city and its time zone
+// - id: unique id so we can link to the detail view
+// - name: display name of the city
+// - timeZone: IANA time zone string (e.g. 'Europe/Stockholm')
+// - imageUrl: optional background image shown in the detail view
+// - viewMode: 'digital' or 'analog' (how the clock is shown)
 
 import type { TimeZone } from './TimeZone'
 
@@ -18,8 +18,8 @@ export interface City {
   viewMode?: ViewMode
 }
 
-// Type guard: kontrollerar att ett okänt värde är en City.
-// Gör det säkert att t.ex. läsa från localStorage.
+// Type guard: checks if some unknown value is a City object
+// Useful when reading data from localStorage (which returns "any")
 export function isCity(value: unknown): value is City {
   if (!value || typeof value !== 'object') return false
   const v = value as Record<string, unknown>

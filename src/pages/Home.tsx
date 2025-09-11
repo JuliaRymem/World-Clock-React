@@ -1,8 +1,8 @@
-// startsidan
-// Visar listan med städer
-// Knapp för att öppna "Lägg till stad"-modalen
-// Sparar allt i localStorage
-// Engångs-migrering: fyller i imageUrl/viewMode om det saknas i redan sparade poster
+// - Shows a grid of city cards
+// - Has a button to open the "Add City" modal
+// - Saves everything in localStorage
+// - Seeds the app with 3 default cities on first visit
+// - One-time migration: fills in missing imageUrl/viewMode for old saved data
 
 import { useMemo, useRef, useEffect, useState } from 'react'
 import Header from '../components/Header'
@@ -13,40 +13,46 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 import type { City } from '../types/City'
 import { isCity } from '../types/City'
 
-// Hämta alla städer från JSON
+// Load all cities from the JSON file (used for defaults + images)
 import citiesData from '../data/cities.json'
 const ALL_CITIES = citiesData as City[]
 
-// Välj bara de tre första som standard (första gången användaren besöker sidan)
+// First-time seed: only take the first 3 cities
 const DEFAULT_CITIES = ALL_CITIES.slice(0, 3)
 
 const LS_KEY = 'worldclock:cities'
 
+// Simple unique id helper
 function uuid() {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
   return Math.random().toString(36).slice(2)
 }
 
-/** Gör id unika + sätt startläge (analog) */
+/**
+ * Prepare initial list:
+ * - attach a unique id (baseId + random suffix)
+ * - set a starting viewMode (analog)
+ */
 function withInitialDefaults(list: City[]): City[] {
   return list.map(c => ({
     ...c,
-    id: `${c.id}-${uuid()}`,    // bas-id + suffix så vi kan lägga till samma stad flera gånger
-    viewMode: 'analog',       // startläge
+    id: `${c.id}-${uuid()}`,
+    viewMode: 'analog',
   }))
 }
 
 export default function Home() {
-  const now = useNow(1000)
+  const now = useNow(1000) // current time that ticks every second
 
-  // Läs in från localStorage, annars använd BARA de tre första
+  // Load cities from localStorage. if nothing is saved yet, seed with 3 defaults
   const [cities, setCities] = useLocalStorage<City[]>(
     LS_KEY,
     withInitialDefaults(DEFAULT_CITIES)
   )
   const [modalOpen, setModalOpen] = useState(false)
 
-  // Validera data från localStorage med type guard
+  // Validate what we read from localStorage.
+  // If it's broken or not the right shape, reset to the 3 default cities.
   useEffect(() => {
     const raw = localStorage.getItem(LS_KEY)
     if (raw) {
@@ -55,18 +61,19 @@ export default function Home() {
         if (Array.isArray(parsed) && parsed.every(isCity)) {
           setCities(parsed)
         } else {
-          console.warn('Ogiltiga poster i localStorage, återställer till standardlistan (3 städer).')
+          console.warn('Invalid items in localStorage. Resetting to 3 default cities.')
           setCities(withInitialDefaults(DEFAULT_CITIES))
         }
       } catch {
-        console.warn('Fel vid JSON.parse av localStorage. Återställer till standardlistan (3 städer).')
+        console.warn('Failed to parse localStorage. Resetting to 3 default cities.')
         setCities(withInitialDefaults(DEFAULT_CITIES))
       }
     }
-    // Om raw saknas gör hooken redan seed med 3 städer via initialvärdet ovan
+    // If "raw" is missing, the hook already seeded 3 cities via the initial value above.
   }, [setCities])
 
-  // Engångs-migrering för äldre poster (fyll i imageUrl / viewMode om det saknas)
+  // One-time migration: if older saved items are missing imageUrl or viewMode,
+  // fill them in so the UI looks consistent.
   const didMigrate = useRef(false)
   useEffect(() => {
     if (didMigrate.current) return
@@ -92,15 +99,18 @@ export default function Home() {
     didMigrate.current = true
   }, [cities, setCities])
 
-  // Bas-id:n (utan suffix) för att dölja dubbletter i AddCityModal
+  // Base ids (without the random suffix). We use this to hide duplicates
+  // inside the AddCityModal, so the user doesn't add the same base city twice by mistake.
   const existingBaseIds = useMemo(
     () => new Set(cities.map(c => c.id.split('-')[0])),
     [cities]
   )
 
+  // Remove a city by its unique id (the one with the suffix)
   const onRemove = (id: string) =>
     setCities(prev => prev.filter(c => c.id !== id))
 
+  // Switch a single card between analog/digital
   const onToggleView = (id: string) =>
     setCities(prev =>
       prev.map(c =>
@@ -108,7 +118,10 @@ export default function Home() {
       )
     )
 
-  // Lägg till stad (från listan eller egen)
+  // Add a city (from the list or a custom one)
+  // - give it a fresh unique id
+  // - set a starting view
+  // - if no imageUrl was provided, try to copy it from the defaults
   const onAdd = (city: City) => {
     const baseId = city.id.split('-')[0]
     const fromAll = ALL_CITIES.find((d: City) => d.id === baseId)
@@ -117,23 +130,25 @@ export default function Home() {
       ...prev,
       {
         ...city,
-        id: `${baseId}-${uuid()}`,               // gör unik
-        viewMode: 'digital',                     // startläge
-        imageUrl: city.imageUrl ?? fromAll?.imageUrl, // sätt bild om saknas
+        id: `${baseId}-${uuid()}`,
+        viewMode: 'digital',
+        imageUrl: city.imageUrl ?? fromAll?.imageUrl,
       },
     ])
   }
 
   return (
     <div className="container">
+      {/* Header with big "Add City" button */}
       <Header onAdd={() => setModalOpen(true)} />
 
+      {/* Either show an empty state or the grid of cards */}
       {cities.length === 0 ? (
         <div className="empty">
-          Inga klockor än.
+          No clocks yet.
           <div style={{ marginTop: 8 }}>
             <button className="btn btn-primary" onClick={() => setModalOpen(true)}>
-              + Lägg till en stad
+              + Add a city
             </button>
           </div>
         </div>
@@ -151,11 +166,12 @@ export default function Home() {
         </div>
       )}
 
+      {/* Modal used to pick from the list or add a custom city */}
       <AddCityModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onAdd={onAdd}
-        existingIds={existingBaseIds}  // ta bort denna prop ?
+        existingIds={existingBaseIds}  // to hide duplicates
       />
     </div>
   )

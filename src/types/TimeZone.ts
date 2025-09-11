@@ -1,6 +1,6 @@
-// TimeZone som string literal union för vanliga zoner
-// tillåter även "vilken som helst" IANA-sträng via ett brandat string-typtrick
-// Gör att man får autocomplete för vanliga zoner + kan skriva egna
+// A list of the most common IANA time zones.
+// By writing them as a "string literal union" we get autocomplete in TypeScript.
+// Example typing "Europe/" will suggest all matching zones.
 
 export type CommonTimeZone =
   | 'Europe/Stockholm'
@@ -32,5 +32,8 @@ export type CommonTimeZone =
   | 'Australia/Perth'
   | 'Pacific/Auckland'
 
-// Tillåt även egna strängar (måste vara giltig IANA vid runtime).
+// TimeZone type
+// - Either one of the predefined common zones above
+// - Or *any* string (must be a valid IANA zone at runtime)
+// This allows autocomplete for common zones, but still supports custom input.
 export type TimeZone = CommonTimeZone | (string & { readonly __brand?: unique symbol })
