@@ -105,9 +105,8 @@ a:hover { text-decoration: underline; }
   display: grid;
   grid-template-columns: 1fr;
   gap: 18px;
+  margin-top: 32px;              
 }
-@media (min-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
 @media (min-width: 900px) {
   .grid {
