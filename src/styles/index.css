@@ -27,9 +27,7 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
 .muted { color: #6B7280; }
 
-/* =========================
-   Header (floating title)
-========================= */
+/* Header section */
 .header {
   background: transparent; border: 0; box-shadow: none;
   display: flex; flex-direction: column; align-items: center; gap: 12px;
@@ -38,7 +36,7 @@ a:hover { text-decoration: underline; }
 }
 .title {
   font-family: "Manrope", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size: clamp(32px, 5.2vw, 56px);
+  font-size: 78px;
   font-weight: 800;
   letter-spacing: 0.2px;
   color: #2C3A34;
@@ -48,12 +46,12 @@ a:hover { text-decoration: underline; }
   font-size: clamp(40px, 6.6vw, 64px);
 }
 
-/* Big header "Add" button */
+/* Header "Add" button */
 .header__add {
   font-family: "Manrope", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   display: inline-flex; align-items: center; justify-content: center;
   padding: 14px 22px;
-  font-size: 18px; font-weight: 800;
+  font-size: 20px; font-weight: 400;
   border-radius: 999px;
   border: none;
   color: #FFFFFF;
@@ -74,9 +72,7 @@ a:hover { text-decoration: underline; }
   border-radius: 12px;
 }
 
-/* =========================
-   Buttons (global)
-========================= */
+/* Buttons - global */
 .btn {
   font-family: "Manrope", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -104,9 +100,7 @@ a:hover { text-decoration: underline; }
   border-color: transparent;
 }
 
-/* =========================
-   Grid (Home)
-========================= */
+/* Grid (home) */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
