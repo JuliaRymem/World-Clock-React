@@ -1,38 +1,23 @@
-/* =====================================================
-   Light Sunrise + Pastel Rainbow — Premium Typography
-   Inter (body) + Manrope (headings/buttons)
-===================================================== */
 
-/* Base Reset & Typography */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 
 body {
   margin: 0;
-  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: #1F2937; /* text */
-  background: linear-gradient(180deg, #D4DAD3 0%, #F4F6F8 100%); /* light base */
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #1F2937;
+  background: linear-gradient(
+    135deg,
+    #839f7e9d 0%,    
+    #cde7f67f 20%,     
+    #bfa5d490 40%,     
+    #f6b0c79d 60%,    
+    #f7e8c897 80%,     
+    #839F7E 100%     
+  );
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Sunrise glow near bottom */
-body::after {
-  content: "";
-  position: fixed;
-  left: 0; right: 0; bottom: -80%;
-  height: 45vh;
-  pointer-events: none;
-  background:
-    radial-gradient(1200px 380px at 50% 100%, rgba(255,199,112,0.42), transparent 60%),
-    radial-gradient(1200px 360px at 50% 100%, rgba(255,164,184,0.28), transparent 70%),
-    radial-gradient(1200px 320px at 50% 100%, rgba(255,246,215,0.55), transparent 72%);
-  filter: blur(14px) saturate(1.05);
-  z-index: -1;
 }
 
 /* Links & Container */
