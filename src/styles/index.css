@@ -245,14 +245,21 @@ a:hover { text-decoration: underline; }
   font-size: 13px;
   transition: background .15s ease;
 }
-.card .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+.card .segmented__btn.is-active {
+  background: linear-gradient(135deg, #839F7E, #BFA5D4);
+  color: #FFFFFF;
 }
+
+/* Remove button (small) */
 .card .btn-danger {
-  background: linear-gradient(135deg, #E58383, #D96A6A);
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: #cf3b3bbd;
   color: #FFFFFF;
   border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 /* =========================
