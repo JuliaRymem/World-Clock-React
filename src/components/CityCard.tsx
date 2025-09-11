@@ -8,9 +8,9 @@ import { AnalogClock } from './AnalogClock'
 
 type CityCardProps = {
   city: City
-  now: number               // current time in milliseconds
-  onRemove: (id: string) => void   // remove this city
-  onToggleView: (id: string) => void // switch between analog/digital
+  now: number                         // current time in milliseconds
+  onRemove: (id: string) => void      // remove city by id
+  onToggleView: (id: string) => void  //switch between digital/analog
 }
 
 export function CityCard({ city, now, onRemove, onToggleView }: CityCardProps) {
@@ -26,7 +26,6 @@ export function CityCard({ city, now, onRemove, onToggleView }: CityCardProps) {
 
   // Function to go to the "detail page" for this city
   const goToDetail = () => navigate(`/city/${encodeURIComponent(city.id)}`)
-
   // Stop click bubbling so that when you click a button,
   // it doesn’t also open the detail page
   const stop: React.MouseEventHandler = (e) => e.stopPropagation()
@@ -43,14 +42,14 @@ export function CityCard({ city, now, onRemove, onToggleView }: CityCardProps) {
           goToDetail()
         }
       }}
-      aria-label={`Open detail view for ${city.name}`}
+      aria-label={`Öppna detaljvy för ${city.name}`}
     >
       {/* City name */}
       <div className="city-name" style={{ textAlign: 'center' }}>
         {city.name}
       </div>
 
-      {/* Clock - either analog or digital */}
+      {/* Clock */}
       <div className="card__clock">
         {city.viewMode === 'analog' ? (
           <AnalogClock epochMs={now} timeZone={city.timeZone} />
@@ -59,33 +58,50 @@ export function CityCard({ city, now, onRemove, onToggleView }: CityCardProps) {
         )}
       </div>
 
-      {/* Extra info withdate, time zone, difference */}
+      {/* Info row */}
       <div className="meta">
         {formatDate(now, city.timeZone)} • {city.timeZone} • diff {diffLabel}
       </div>
 
-      {/* Buttons */}
-<div className="toolbar toolbar--center">
-  <button
-    className="btn"
-    onClick={(e) => {
-      stop(e)
-      onToggleView(city.id)
-    }}
-  >
-    {city.viewMode === 'analog' ? 'Byt till digital' : 'Byt till analog'}
-  </button>
+      {/* Controls */}
+      <div className="toolbar toolbar--center" style={{ flexDirection: 'column', gap: '10px' }}>
+        {/* Toggle */}
+        <div className="segmented" role="tablist" aria-label="Välj visningsläge">
+          <button
+            role="tab"
+            aria-selected={city.viewMode !== 'analog'}
+            className={`segmented__btn ${city.viewMode !== 'analog' ? 'is-active' : ''}`}
+            onClick={(e) => {
+              stop(e)
+              onToggleView(city.id)
+            }}
+          >
+            Digital
+          </button>
+          <button
+            role="tab"
+            aria-selected={city.viewMode === 'analog'}
+            className={`segmented__btn ${city.viewMode === 'analog' ? 'is-active' : ''}`}
+            onClick={(e) => {
+              stop(e)
+              onToggleView(city.id)
+            }}
+          >
+            Analog
+          </button>
+        </div>
 
-  <button
-    className="btn btn-danger"
-    onClick={(e) => {
-      stop(e)
-      onRemove(city.id)
-    }}
-  >
-    Ta bort
-  </button>
-</div>
+        {/* Remove button */}
+        <button
+          className="btn btn-danger"
+          onClick={(e) => {
+            stop(e)
+            onRemove(city.id)
+          }}
+        >
+          Ta bort
+        </button>
+      </div>
     </div>
   )
 }
