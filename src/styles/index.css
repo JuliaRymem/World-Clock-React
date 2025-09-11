@@ -371,9 +371,8 @@ a:hover { text-decoration: underline; }
 /* Form spacing */
 .modal .form-grid { display: grid; gap: 10px; }
 
-/* =========================
-   City Detail
-========================= */
+
+/* City -detail */
 .back-link { display: inline-block; margin: 16px 0; color: #375243; }
 .back-link:hover { text-decoration: underline; }
 
@@ -415,7 +414,7 @@ a:hover { text-decoration: underline; }
 
 .detail-card { padding: 18px; text-align: center; }
 
-/* Stabil klockyta (analog/digital) */
+/* klockyta (analog/digital) */
 .detail-clock {
   display: grid;
   grid-template-rows: auto auto; /* clock + date */
@@ -469,9 +468,7 @@ a:hover { text-decoration: underline; }
   .detail-clock svg, .detail-time { width: 150px; height: 150px; }
 }
 
-/* =========================
-   Empty state
-========================= */
+/* Empty state */
 .empty {
   border: 1px dashed #E5E7EB;
   border-radius: 16px;
