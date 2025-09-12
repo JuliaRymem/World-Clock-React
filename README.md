@@ -72,7 +72,7 @@ I mitt projekt finns flera exempel där TypeScript gör koden säkrare och lätt
 
    - Funktionen `useLocalStorage<T>` använder *generics.*
    - Fördelen är att jag kan återanvända hooken för olika typer av data, t.ex. `City[]` eller bara en `string`. TypeScript ser alltid till att rätt typ sparas och hämtas från `localStorage`.
-3. **`TimeZone.ts` **(string literal types)
+3. **`TimeZone.ts`** (string literal types)
 
    - Här använder jag *string literal types* för tidszoner, t.ex. `'Europe/Stockholm'` eller `'America/New_York'`.
    - Fördelen: Editorn ger mig autocomplete när jag skriver tidszoner och varnar också direkt om jag försöker använda en ogiltig sträng.
