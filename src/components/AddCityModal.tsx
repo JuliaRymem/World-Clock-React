@@ -1,8 +1,7 @@
-/**
- * - Search and pick a city from cities.json
- * - Add a custom city (name + IANA time zone)
- * - Uses the generic <List<T>> component for rendering results
- */
+// Search and pick a city from cities.json
+// Add a custom city (name + IANA time zone)
+// Uses the generic <List<T>> component for rendering results
+
 
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { City } from '../types/City'
@@ -13,24 +12,24 @@ import { List } from './List'
 type CityOption = Pick<City, 'id' | 'name' | 'timeZone' | 'imageUrl'>
 type NewCityInput = Omit<City, 'id' | 'viewMode' | 'imageUrl'>
 
-/** Minimal UUID helper so each added instance becomes unique */
+// Minimal UUID helper so each added instance becomes unique 
 function uuid() {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
   return Math.random().toString(36).slice(2)
 }
 
-/** Props for AddCityModal */
+// Props for AddCityModal 
 interface AddCityModalProps {
-  /** When the modal is visible */
+// When the modal is visible
   open: boolean
-  /** Called when the modal should close */
+// Called when the modal should close
   onClose: () => void
-  /** Called with the City to add */
+// Called with the City to add
   onAdd: (city: City) => void
-  /**
-   * Set of already-added base IDs (without the unique suffix).
-   * Used to hide duplicates from the selection list.
-   */
+
+// Set of already-added base IDs (without the unique suffix).
+//Used to hide duplicates from the selection list.
+  
   existingIds: Set<string>
 }
 
@@ -78,7 +77,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
 
   if (!open) return null
 
-  /** Add a city chosen from the predefined list */
+  // Add a city chosen from the predefined list
   const addFromList = (opt: CityOption) => {
     const newCity: City = {
       id: `${opt.id}-${uuid()}`, // make unique
@@ -91,7 +90,7 @@ export const AddCityModal: React.FC<AddCityModalProps> = ({
     onClose()
   }
 
-  /** Submit a custom city with IANA zone (validated) */
+  // Submit a custom city with IANA zone (validated) 
   const submitCustom: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     setError(null)

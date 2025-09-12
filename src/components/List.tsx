@@ -8,7 +8,7 @@ export interface ListProps<T> {
   render: (item: T) => React.ReactNode
   className?: string
 }
-
+// Generic List component
 export function List<T>({ items, keyOf, render, className }: ListProps<T>) {
   return (
     <div className={className}>

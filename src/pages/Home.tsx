@@ -28,11 +28,9 @@ function uuid() {
   return Math.random().toString(36).slice(2)
 }
 
-/**
- * Prepare initial list:
- * - attach a unique id (baseId + random suffix)
- * - set a starting viewMode (analog)
- */
+// Prepare initial list:
+// attach a unique id (baseId + random suffix)
+// set a starting viewMode (analog)
 function withInitialDefaults(list: City[]): City[] {
   return list.map(c => ({
     ...c,

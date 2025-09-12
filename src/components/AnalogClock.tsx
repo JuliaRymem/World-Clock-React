@@ -1,11 +1,11 @@
-// Enkel analog klocka med SVG.
-// epochMs: tiden i millisekunder
-// timeZone: vilken tidszon tiden räknas om till
+// simmple analog clock component in SVG
+// epochMs: time in milliseconds
+// timeZone: wich timezone to show
 
 import { useMemo } from 'react'
 import type { TimeZone } from '../types/TimeZone'
 
-// räkna ut visarnas vinklar
+// calculate angles for hour, minute and second hands
 function computeAngles(epochMs: number, timeZone: TimeZone) {
   // Hämta HH, mm, ss i given tidszon via Intl.DateTimeFormat
   const dtf = new Intl.DateTimeFormat('en-US', {
@@ -34,7 +34,7 @@ export function AnalogClock({ epochMs, timeZone, size = 140 }: { epochMs: number
   const { hourAngle, minAngle, secAngle } = useMemo(() => computeAngles(epochMs, timeZone), [epochMs, timeZone])
   const r = size / 2
   const center = r
-
+ 
   // Helper som ritar en visare (SVG <line>)
   const hand = (length: number, width: number, angle: number, color: string) => (
     <line

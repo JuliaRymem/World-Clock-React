@@ -3,12 +3,12 @@
 
 import type { TimeZone } from '../types/TimeZone'
 
-/** Returns the current time as epoch milliseconds (helper function) */
+// Returns the current time as epoch milliseconds (helper function)
 export function nowMs(): number {
   return Date.now()
 }
 
-/** Format a clock time in the given time zone, e.g. "14:05:07" */
+// Format a clock time in the given time zone
 export function formatTime(epochMs: number, timeZone: TimeZone, withSeconds = true): string {
   const opts: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
@@ -20,7 +20,7 @@ export function formatTime(epochMs: number, timeZone: TimeZone, withSeconds = tr
   return new Intl.DateTimeFormat(undefined, opts).format(epochMs)
 }
 
-/** Format a date + weekday in the given time zone, e.g. "Wed 21 Aug 2025" */
+// Format a date + weekday in the given time zone
 export function formatDate(epochMs: number, timeZone: TimeZone): string {
   const opts: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -32,7 +32,7 @@ export function formatDate(epochMs: number, timeZone: TimeZone): string {
   return new Intl.DateTimeFormat(undefined, opts).format(epochMs)
 }
 
-/** Simple check is the string a valid IANA time zone? */
+// Simple check is the string a valid IANA time zone?
 export function isValidTimeZone(tz: string): boolean {
   try {
     new Intl.DateTimeFormat('en-US', { timeZone: tz }).format(0)
@@ -42,17 +42,15 @@ export function isValidTimeZone(tz: string): boolean {
   }
 }
 
-/**
- * Calculate the difference from the local time in MINUTES (other - local).
- * Example: returns +420 for +7h00 difference.
- */
+// Calculate the difference from the local time in MINUTES (other - local).
+// Example: returns +420 for +7h00 difference.
 export function diffFromLocalMinutes(timeZone: TimeZone, epochMs: number): number {
   const localOffset = -new Date(epochMs).getTimezoneOffset()
   const other = -zoneOffsetMinutes(timeZone, epochMs)
   return other - localOffset
 }
 
-/** Internal helper: calculate the zone offset vs UTC in minutes */
+// Internal helper: calculate the zone offset vs UTC in minutes
 function zoneOffsetMinutes(timeZone: TimeZone, epochMs: number = Date.now()): number {
   const dtf = new Intl.DateTimeFormat('en-US', {
     timeZone,
