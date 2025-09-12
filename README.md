@@ -12,7 +12,7 @@ Användaren kan lägga till städer från en färdig lista eller skriva in egna,
 - Detaljvy för varje stad (egen route med React Router) med bakgrundsbild och tid.
 - Ta bort städer från listan.
 - Inställningar (valda städer och vy-läge) sparas i localStorage och laddas vid nästa besök.
-- Responsiv design (mobil → desktop).
+- Responsiv design (mobil/desktop).
 
 ---
 
@@ -20,7 +20,7 @@ Användaren kan lägga till städer från en färdig lista eller skriva in egna,
 
 Jag började med att göra skisser i Figma för både mobil och desktop. Jag gjorde även en styleguide med färger, typsnitt och layout.
 
-Min tanke bakom gränssnittet var att jag ville ha en enkel och tydlig sida. Korten med klockor placerades i ett grid, 1 per rad på mobil och upp till 3 på desktop. Det för att kännas luftiga men ändå strukturerade. Detaljsidan har en hero-bild och en ruta under för klocka och knappar.
+Min tanke bakom gränssnittet var att jag ville ha en enkel och tydlig sida. Korten med klockor placerades i ett grid, 1 per rad på mobil och upp till 3 på desktop. Detaljsidan har en Hero-bild och en ruta under för klocka och knappar.
 
 *Länk till Figma:* https://www.figma.com/design/oHbTt9iYLGD75C8868ME4o/World-Clock-App?node-id=27-379&t=FOO3bYPaYiDqEGlz-1
 
@@ -35,15 +35,15 @@ Jag ville göra så att logik och komponenter är tydligt separerade. Återanvä
 - `Header` - Titel + knapp för att lägga till stad.
 - `CityCard` - Kort för varje stad med tid, datum och knappar.
 - `AddCityModal` - Modal för att välja/skriva in städer.
-- `AnalogClock` → SVG-klocka som visar tiden med visare.
-- `CityDetail` → Sida med hero-bild, klocka och knappar.
-- `Home` → Startsida med grid av städer.
+- `AnalogClock` - SVG-klocka som visar tiden med visare.
+- `CityDetail` - Sida med hero-bild, klocka och knappar.
+- `Home` - Startsida med grid av städer.
 
 **Logik utanför komponenter:**
 
 - `hooks/useLocalStorage.ts` - Generisk hook för att läsa/spara till localStorage.
 - `hooks/useNow.ts` - Hook för att uppdatera tiden varje sekund.
-- `utils/time.ts` - Hjälpfunktioner för att formatera tid/datum, validera tidszoner och beräkna tidsdifferenser.
+- `utils/time.ts` - Hjälpfunktioner för att formatera tid/datum, validera tidszoner och beräkna tidsskillnader.
 
 **Typer och interfaces i egna filer:**
 
@@ -64,7 +64,7 @@ Under arbetet har jag kontinuerligt testat koden genom att köra projektet i ter
 
 I mitt projekt finns flera exempel där TypeScript gör koden säkrare och lättare att förstå jämfört med om jag bara hade använt JavaScript.
 
-1. **`City.ts` **(typer för städer)
+1. **`City.ts`** (typer för städer)
 
    - Här har jag definierat ett City-interface som innehåller `id`, `name`, `timeZone`, `imageUrl` och `viewMode`.
    - Fördelen är att jag får fel direkt i editorn om jag glömmer ett fält eller råkar skriva fel typ (exempelvis om jag försöker sätta en siffra i `name` som ska vara en text).
@@ -72,11 +72,11 @@ I mitt projekt finns flera exempel där TypeScript gör koden säkrare och lätt
 
    - Funktionen `useLocalStorage<T>` använder *generics.*
    - Fördelen är att jag kan återanvända hooken för olika typer av data, t.ex. `City[]` eller bara en `string`. TypeScript ser alltid till att rätt typ sparas och hämtas från `localStorage`.
-3. **`TimeZone.ts` (string literal types)**
+3. **`TimeZone.ts` **(string literal types)
 
    - Här använder jag *string literal types* för tidszoner, t.ex. `'Europe/Stockholm'` eller `'America/New_York'`.
    - Fördelen: Editorn ger mig autocomplete när jag skriver tidszoner och varnar också direkt om jag försöker använda en ogiltig sträng.
-4. **Type guards (`isCity`)**
+4. **Type guards** (`isCity`)
 
    - I `City.ts` har jag skrivit en *type guard* (`isCity`) som kontrollerar om ett objekt verkligen är en `City`.
    - Fördelen är att när jag läser från `localStorage` (där datan kan vara fel eller saknas) kan jag försäkra mig om att det faktiskt är en stad innan jag använder datan.
@@ -86,11 +86,10 @@ I mitt projekt finns flera exempel där TypeScript gör koden säkrare och lätt
 ### Hur TypeScript blir JavaScript
 
 TypeScript är som ett extra lager ovanpå JavaScript. Webbläsare kan inte köra TypeScript direkt, därför måste koden transpileras, alltså översättas, till vanlig JavaScript när projektet byggs.
-
 I det här projektet används Vite och TypeScript tillsammans för att hantera det.
 
 - När jag kör `npm run dev` startar Vite en utvecklingsserver och transpilerar TypeScript-filerna i bakgrunden.
-- När jag kör `npm run build` kompileras hela projektet till ren JavaScript som då sparas i en `dist/`-mapp.
+- När jag kör `npm run build` kompileras hela projektet till ren JavaScript som då sparas i en dist/-mapp.
 
 Alla typer och typmarkeringar (exempelvis interface, type eller : string) används bara under utvecklingen för att ge stöd och kontroll. När koden byggs tas de bort, så att bara den vanliga JavaScript-koden blir kvar.
 
@@ -105,7 +104,7 @@ export interface City {
 const city: City = { id: "1", name: "Stockholm", timeZone: "Europe/Stockholm" }
 ```
 
-Transpileras till:
+Det transpileras till:
 
 ```js
 // JavaScript
@@ -121,7 +120,7 @@ Fördelen är att jag under tiden jag kodar får hjälp av TypeScript med att up
 1. Klona repo:
 
    ```bash
-   git clone https://github.com/<ditt-repo>/world-clock-react.git
+   git clone https://github.com/JuliaRymem/World-Clock-React.git
    cd world-clock-react
    ```
 2. Installera dependencies:
