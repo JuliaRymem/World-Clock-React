@@ -46,7 +46,7 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 - [X] Modal för att lägga till städer
 - [X] Detaljvy med hero-bild + ruta under
 - [X] Ljus färgpalett och typografi
-- [ ] (om tid finns - bättre styling!)
+- [X] (om tid finns - bättre styling!)
 
 ## TypeScript-specifika krav
 
@@ -63,7 +63,7 @@ Jag la till det som en todo-list för att enkelt kunna markera de som klara med 
 - [X] Loggbok över arbetsprocessen
 - [X] README.md för projektet
 - [X] Styleguide för designval
-- [ ] Kommentarer i kod på engelska
+- [X] Kommentarer i kod på engelska
 - [X] Förklara 3 fördelar med TypeScript i dokumentationen
 - [X] Beskriva hur TypeScript transpileras till JavaScript
 
